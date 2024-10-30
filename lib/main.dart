@@ -214,8 +214,8 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                                 color: Colors.red,
                                 alignment: Alignment.centerRight,
                                 padding: const EdgeInsets.only(right: 20),
-                                child: const Icon(Icons.delete,
-                                    color: Colors.white),
+                                child: Icon(Icons.delete,
+                                    color: widget.secondaryColor),
                               ),
                               child: InkWell(
                                 onTap: () => _showQuantityDialog(index),
@@ -226,8 +226,9 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                                     padding: const EdgeInsets.all(3.0),
                                     child: Text(
                                       '$quantity',
-                                      style: const TextStyle(
-                                          fontSize: 18, color: Colors.white),
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: widget.secondaryColor),
                                     ),
                                   ),
                                   child: Card(
@@ -275,8 +276,10 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                 // If not yet listening for speech start, otherwise stop
                 _speechToText.isNotListening ? _startListening : _stopListening,
             tooltip: 'Listen',
-            child:
-                Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+            child: Icon(
+              _speechToText.isNotListening ? Icons.mic_off : Icons.mic,
+              color: widget.secondaryColor,
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -290,7 +293,10 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                 setState(() {});
               },
               tooltip: 'Clear',
-              child: const Icon(Icons.clear),
+              child: Icon(
+                Icons.clear,
+                color: widget.secondaryColor,
+              ),
             ),
           ),
           Visibility(
@@ -307,7 +313,10 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                 Navigator.of(context).pop(_recognitionResult);
               },
               tooltip: 'Complete',
-              child: const Icon(Icons.card_travel_sharp),
+              child: Icon(
+                Icons.card_travel_sharp,
+                color: widget.secondaryColor,
+              ),
             ),
           ),
         ],
