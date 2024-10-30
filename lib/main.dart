@@ -216,8 +216,8 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                               child: InkWell(
                                 onTap: () => _showQuantityDialog(index),
                                 child: badge.Badge(
-                                  badgeColor: widget.primaryColor,
-                                  toAnimate: false,
+                                  badgeStyle: badge.BadgeStyle(
+                                      badgeColor: widget.primaryColor),
                                   badgeContent: Padding(
                                     padding: const EdgeInsets.all(3.0),
                                     child: Text(
