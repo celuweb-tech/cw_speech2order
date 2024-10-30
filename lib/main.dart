@@ -9,11 +9,15 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 class Speech2OrderPage extends StatefulWidget {
   const Speech2OrderPage(
-      {Key? key, required this.products, required this.primaryColor})
+      {Key? key,
+      required this.products,
+      required this.primaryColor,
+      this.secondaryColor = Colors.white})
       : super(key: key);
 
   final List<Speech2OrderProduct> products;
   final Color primaryColor;
+  final Color secondaryColor;
 
   @override
   // ignore: library_private_types_in_public_api
