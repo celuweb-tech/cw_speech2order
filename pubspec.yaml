@@ -1,0 +1,31 @@
+name: cw_speech2order
+description: "A new Flutter package project."
+repository: 'https://github.com/celuweb-tech/cw_speech2order'
+homepage:
+
+version: 0.0.2
+
+platforms:
+  android:
+  ios:
+  macos:
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  speech_to_text: ^6.6.0
+  fuzzy: <1.0.0
+  badges: ^2.0.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
