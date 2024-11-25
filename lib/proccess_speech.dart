@@ -17,7 +17,8 @@ Future<List<Map<String, dynamic>>> proccesSpeechResult({
   required String speechText,
   required List<Speech2OrderProduct> products,
 }) async {
-  if (speechText.isEmpty) {
+  List<String> words = speechText.split(' ');
+  if (words.isNotEmpty && !RegExp(r'^\d+').hasMatch(words[0])) {
     return [];
   }
 
@@ -26,7 +27,7 @@ Future<List<Map<String, dynamic>>> proccesSpeechResult({
   products = normalizeProducts(products);
 
   // Process speech text
-  List<String> processedText = normalizeWords(speechText.split(' '));
+  List<String> processedText = normalizeWords(words);
 
   processedText = processNumbers(speechText);
   // Extract and remove product quantity (implementations assumed elsewhere)
@@ -65,6 +66,7 @@ List<String> normalizeWords(List<String> words) {
       .map((word) => word
           .trim()
           .toLowerCase()
+          .replaceAll(':', '')
           .replaceAll(RegExp(r'[áàâãäå]'), 'a')
           .replaceAll(RegExp(r'[éèêë]'), 'e')
           .replaceAll(RegExp(r'[íìîï]'), 'i')
