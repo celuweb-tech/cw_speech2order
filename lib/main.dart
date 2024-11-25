@@ -46,10 +46,18 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
 
   @override
   void dispose() {
+    _cleanup();
+    super.dispose();
+  }
+
+  Future<void> _cleanup() async {
     _sessionTimer?.cancel();
     _restartTimer?.cancel();
-    _stopListening();
-    super.dispose();
+    if (_speechToText.isListening) {
+      await _speechToText.stop();
+    }
+    _speechToText.cancel();
+    _continuousListening = false;
   }
 
   void _initSpeech() async {
@@ -608,7 +616,10 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
             FloatingActionButton(
               heroTag: 'complete',
               onPressed: () {
-                Navigator.of(context).pop(_recognitionResult);
+                final results =
+                    List<Map<String, dynamic>>.from(_recognitionResult);
+                _cleanup();
+                Navigator.of(context).pop(results);
               },
               backgroundColor: widget.primaryColor,
               child: Icon(
