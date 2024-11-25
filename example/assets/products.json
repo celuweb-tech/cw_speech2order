@@ -1,621 +1,182 @@
 [
     {
-        "code": "00001",
+        "code": "172839",
         "title": "Vino tinto x 750 ml",
-        "price": "23240",
-        "bar_code": "1234567890123"
+        "price": "23240"
     },
     {
-        "code": "00002",
+        "code": "918273",
         "title": "Vino blanco x 500 ml",
-        "price": "13460",
-        "bar_code": "9876543210987"
+        "price": "13460"
     },
     {
-        "code": "00003",
+        "code": "345678",
         "title": "Chocolatina de 120 gr",
-        "price": "19250",
-        "bar_code": "5647382910123"
+        "price": "19250"
     },
     {
-        "code": "00004",
-        "title": "casquitos de papa  rapi 1000 gr",
-        "price": "23100.0",
-        "bar_code": "3456789012345"
+        "code": "563728",
+        "title": "casquitos de papa rapi 1000 gr",
+        "price": "23100.0"
     },
     {
-        "code": "00005",
-        "title": "vegetales mixtos  mc cain 500 gr",
-        "price": "15900.0",
-        "bar_code": "1029384756102"
+        "code": "981245",
+        "title": "vegetales mixtos mc cain 500 gr",
+        "price": "15900.0"
     },
     {
-        "code": "00006",
+        "code": "234567",
         "title": "edamame sin cascara best choice 454 gr",
-        "price": "28150.0",
-        "bar_code": "5647382901234"
+        "price": "28150.0"
     },
     {
-        "code": "00007",
-        "title": "rapipa rizada  rapi 1000 gr",
-        "price": "23100.0",
-        "bar_code": "1092837465012"
+        "code": "765432",
+        "title": "rapipa rizada rapi 1000 gr",
+        "price": "23100.0"
     },
     {
-        "code": "00008",
+        "code": "876543",
         "title": "papa criolla precocida puro verde 500 gr",
-        "price": "11350.0",
-        "bar_code": "2938475610928"
+        "price": "11350.0"
     },
     {
-        "code": "00009",
-        "title": "papa horneable  rapi 1500 gr",
-        "price": "37050.0",
-        "bar_code": "5647382094875"
+        "code": "567890",
+        "title": "papa horneable rapi 1500 gr",
+        "price": "37050.0"
     },
     {
-        "code": "00010",
+        "code": "678901",
         "title": "yuca mini mc cain 1000 gr",
-        "price": "17550.0",
-        "bar_code": "3948576201948"
+        "price": "17550.0"
     },
     {
-        "code": "00011",
+        "code": "789012",
         "title": "edamame con cascara best choice 454 gr",
-        "price": "25900.0",
-        "bar_code": "7382910564723"
+        "price": "25900.0"
     },
     {
-        "code": "00012",
+        "code": "890123",
         "title": "croqueta de yuca congelados criss 500 gr",
-        "price": "7770.0",
-        "bar_code": "4829103647583"
+        "price": "7770.0"
     },
     {
-        "code": "00013",
-        "title": "salteado thai  frutos del maipo 500 gr",
-        "price": "18300.0",
-        "bar_code": "9203746581029"
+        "code": "901234",
+        "title": "salteado thai frutos del maipo 500 gr",
+        "price": "18300.0"
     },
     {
-        "code": "00014",
-        "title": "carnes frias  congeladas aviko marca exclusiva 600 gr",
-        "price": "9990.0",
-        "bar_code": "3758291046572"
+        "code": "102345",
+        "title": "carnes frias congeladas aviko marca exclusiva 600 gr",
+        "price": "9990.0"
     },
     {
-        "code": "00015",
-        "title": "salteado mediterraneo  frutos del maipo 500 gr",
-        "price": "18950.0",
-        "bar_code": "5647281093756"
+        "code": "112456",
+        "title": "salteado mediterraneo frutos del maipo 500 gr",
+        "price": "18950.0"
     },
     {
-        "code": "00016",
-        "title": "salteado chapsui  frutos del maipo 500 gr",
-        "price": "18550.0",
-        "bar_code": "7394821564872"
+        "code": "122567",
+        "title": "salteado chapsui frutos del maipo 500 gr",
+        "price": "18550.0"
     },
     {
-        "code": "00017",
+        "code": "132678",
         "title": "papas rizadas rusticas mc cain 2000 gr",
-        "price": "33300.0",
-        "bar_code": "5928473102567"
+        "price": "33300.0"
     },
     {
-        "code": "00018",
+        "code": "142789",
         "title": "batido manlimon tosh 360 gr",
-        "price": "12000.0",
-        "bar_code": "2847560391827"
+        "price": "12000.0"
     },
     {
-        "code": "00019",
+        "code": "152890",
         "title": "batido papyanaran tosh 360 gr",
-        "price": "12000.0",
-        "bar_code": "8573920416523"
+        "price": "12000.0"
     },
     {
-        "code": "00020",
+        "code": "162901",
         "title": "pulpa congelada corazon verde canoa fit 540 gr",
-        "price": "16550.0",
-        "bar_code": "3728401956203"
+        "price": "16550.0"
     },
     {
-        "code": "00021",
+        "code": "172012",
         "title": "pulpa congelada de mora frescampo 250 gramo",
-        "price": "3850.0",
-        "bar_code": "9283745163028"
+        "price": "3850.0"
     },
     {
-        "code": "00022",
+        "code": "182123",
         "title": "pulpa congelada mora sin azuca canoa 250 gr",
-        "price": "5600.0",
-        "bar_code": "3059184762039"
+        "price": "5600.0"
     },
     {
-        "code": "00023",
-        "title": "pulpifruta de maracuya  pulpi fruta 160 gr",
-        "price": "4110.0",
-        "bar_code": "7643829015283"
+        "code": "192234",
+        "title": "pulpifruta de maracuya pulpi fruta 160 gr",
+        "price": "4110.0"
     },
     {
-        "code": "00024",
+        "code": "202345",
         "title": "batido verde tosh 360 gr",
-        "price": "11900.0",
-        "bar_code": "4982735018467"
+        "price": "11900.0"
     },
     {
-        "code": "00025",
+        "code": "212456",
         "title": "pulpifruta guanabana pulpi fruta 200 gr",
-        "price": "4110.0",
-        "bar_code": "5902837402658"
+        "price": "4110.0"
     },
     {
-        "code": "00026",
+        "code": "222567",
         "title": "pulpa congelada mandarina canoa 250 gr",
-        "price": "6680.0",
-        "bar_code": "7823491056273"
+        "price": "6680.0"
     },
     {
-        "code": "00027",
+        "code": "232678",
         "title": "pulpa dosif.surtx10un canoa 900 gr",
-        "price": "23600.0",
-        "bar_code": "3650928471038"
+        "price": "23600.0"
     },
     {
-        "code": "00028",
+        "code": "242789",
         "title": "pina congelada frutinal 500 gr",
-        "price": "6960.0",
-        "bar_code": "8374629102057"
+        "price": "6960.0"
     },
     {
-        "code": "00029",
+        "code": "252890",
         "title": "pulpa congelada guayaba canoa 250 gr",
-        "price": "5600.0",
-        "bar_code": "5839204716293"
+        "price": "5600.0"
     },
     {
-        "code": "00030",
+        "code": "262901",
         "title": "pulpa congelada lulo sin azuca canoa 250 gr",
-        "price": "5920.0",
-        "bar_code": "9402857361945"
+        "price": "5920.0"
     },
     {
-        "code": "00031",
+        "code": "272012",
         "title": "guanabana congelada sin azucar canoa 250 gr",
-        "price": "6020.0",
-        "bar_code": "5738190465123"
+        "price": "6020.0"
     },
     {
-        "code": "00032",
+        "code": "282123",
         "title": "pulpa congelada fresa sin azuc canoa 250 gr",
-        "price": "5600.0",
-        "bar_code": "8392047516948"
+        "price": "5600.0"
     },
     {
-        "code": "00033",
+        "code": "292234",
         "title": "pulpa congelada mente brillant canoa fit 540 gr",
-        "price": "18350.0",
-        "bar_code": "3904857162045"
+        "price": "18350.0"
     },
     {
-        "code": "00034",
-        "title": "pulpa coco lista para preparar  1200 gr",
-        "price": "21900.0",
-        "bar_code": "5601928473950"
+        "code": "302345",
+        "title": "pulpa coco lista para preparar 1200 gr",
+        "price": "21900.0"
     },
     {
-        "code": "00035",
+        "code": "312456",
         "title": "hamburguesa veggie pietran 440 gr",
-        "price": "33200.0",
-        "bar_code": "2847561029384"
+        "price": "33200.0"
     },
     {
-        "code": "00036",
+        "code": "322567",
         "title": "hamburguesa mixta res cerdo preasada colanta 400 gr",
-        "price": "16300.0",
-        "bar_code": "9384756102938"
-    },
-    {
-        "code": "00037",
-        "title": "hamburguesa de la casa porchi 1010 gr",
-        "price": "26000.0",
-        "bar_code": "2938475610192"
-    },
-    {
-        "code": "00038",
-        "title": "hamburguesa de la casa  porchi 680 gr",
-        "price": "17950.0",
-        "bar_code": "1837462093845"
-    },
-    {
-        "code": "00039",
-        "title": "vinagreta light  aderezos 265 gr",
-        "price": "9410.0",
-        "bar_code": "1234567891001"
-    },
-    {
-        "code": "00040",
-        "title": "salsa roja aji picante amazon 155 ml",
-        "price": "9720.0",
-        "bar_code": "2345678910111"
-    },
-    {
-        "code": "00041",
-        "title": "mostaza la constancia 190 gr",
-        "price": "5990.0",
-        "bar_code": "3456789101213"
-    },
-    {
-        "code": "00042",
-        "title": "vinagreta normal   aderezos 270 gr",
-        "price": "9410.0",
-        "bar_code": "4567891013142"
-    },
-    {
-        "code": "00043",
-        "title": "salsa tartara la constancia 380 gr",
-        "price": "14900.0",
-        "bar_code": "5678910131543"
-    },
-    {
-        "code": "00044",
-        "title": "salsa rosada la constancia 190 gr",
-        "price": "6620.0",
-        "bar_code": "6789101315454"
-    },
-    {
-        "code": "00045",
-        "title": "mostaneza del rancho la constancia 190 gr",
-        "price": "6620.0",
-        "bar_code": "7891013154657"
-    },
-    {
-        "code": "00046",
-        "title": "salsa de tomate doy pack la constancia 400 gr",
-        "price": "8460.0",
-        "bar_code": "8910131546768"
-    },
-    {
-        "code": "00047",
-        "title": "salsa de pina la constancia 200 gr",
-        "price": "5960.0",
-        "bar_code": "9101315467879"
-    },
-    {
-        "code": "00048",
-        "title": "salsa con mostaza la constancia 400 gr",
-        "price": "11550.0",
-        "bar_code": "1113154678981"
-    },
-    {
-        "code": "00049",
-        "title": "salsa bbq doypack la constancia 400 gr",
-        "price": "10300.0",
-        "bar_code": "2131546789102"
-    },
-    {
-        "code": "00050",
-        "title": "salsa pasta napolitana monticello 400 gr",
-        "price": "20100.0",
-        "bar_code": "3141567891023"
-    },
-    {
-        "code": "00051",
-        "title": "salsa de ciruela la constancia 200 gr",
-        "price": "5940.0",
-        "bar_code": "4156789102134"
-    },
-    {
-        "code": "00052",
-        "title": "pasta de tomate la coruna 250 gr",
-        "price": "5900.0",
-        "bar_code": "1123456789012"
-    },
-    {
-        "code": "00053",
-        "title": "salsa de tomate ekono 500 gr",
-        "price": "5150.0",
-        "bar_code": "1234567890123"
-    },
-    {
-        "code": "00054",
-        "title": "canela en astillas frescampo 18 gr",
-        "price": "3190.0",
-        "bar_code": "1345678901234"
-    },
-    {
-        "code": "00055",
-        "title": "canela astilla seleccionada el rey 20 gr",
-        "price": "4510.0",
-        "bar_code": "1456789012345"
-    },
-    {
-        "code": "00056",
-        "title": "mayonesa doy pack kilo fruco 1000 gr",
-        "price": "22700.0",
-        "bar_code": "1567890123456"
-    },
-    {
-        "code": "00057",
-        "title": "pasta tomate la constancia 200 gr",
-        "price": "6710.0",
-        "bar_code": "1678901234567"
-    },
-    {
-        "code": "00058",
-        "title": "of cdo desmenuzado maggi 108 gr",
-        "price": "5950.0",
-        "bar_code": "1789012345678"
-    },
-    {
-        "code": "00059",
-        "title": "chapeta ajo molido el rey 55 gr",
-        "price": "1550.0",
-        "bar_code": "1890123456789"
-    },
-    {
-        "code": "00060",
-        "title": "salsa de tomate doy pack fruco 600 gr",
-        "price": "13100.0",
-        "bar_code": "1901234567890"
-    },
-    {
-        "code": "00061",
-        "title": "chapeta clavo pepa el rey 9 gr",
-        "price": "1600.0",
-        "bar_code": "2012345678901"
-    },
-    {
-        "code": "00062",
-        "title": "salsa para pasta bolognesa barilla 400 gr",
-        "price": "22000.0",
-        "bar_code": "2123456789012"
-    },
-    {
-        "code": "00063",
-        "title": "ajo puro natural el rey 25 gr",
-        "price": "2320.0",
-        "bar_code": "2234567890123"
-    },
-    {
-        "code": "00064",
-        "title": "pimienta molida frescampo 55 gr",
-        "price": "2990.0",
-        "bar_code": "2345678901234"
-    },
-    {
-        "code": "00065",
-        "title": "salsa de tomate pet heinz 397 gr",
-        "price": "15500.0",
-        "bar_code": "2456789012345"
-    },
-    {
-        "code": "00066",
-        "title": "ajo molido frescampo 55 gr",
-        "price": "1810.0",
-        "bar_code": "2567890123456"
-    },
-    {
-        "code": "00067",
-        "title": "mayonesa receta artesanal fruco 440 gr",
-        "price": "24000.0",
-        "bar_code": "2678901234567"
-    },
-    {
-        "code": "00068",
-        "title": "canela entera comarrico 10 gr",
-        "price": "2300.0",
-        "bar_code": "2789012345678"
-    },
-    {
-        "code": "00069",
-        "title": "salsa pesto genovesa barilla 190 gr",
-        "price": "19900.0",
-        "bar_code": "2890123456789"
-    },
-    {
-        "code": "00070",
-        "title": "crema de mani tosh 300 gr",
-        "price": "15100.0",
-        "bar_code": "2901234567890"
-    },
-    {
-        "code": "00071",
-        "title": "salsa de tomate bary 1000 gr",
-        "price": "17550.0",
-        "bar_code": "3012345678901"
-    },
-    {
-        "code": "00072",
-        "title": "mostaza fruco 200 gr",
-        "price": "9240.0",
-        "bar_code": "3123456789012"
-    },
-    {
-        "code": "00073",
-        "title": "canela seleccionada el rey 15 gr",
-        "price": "4290.0",
-        "bar_code": "3234567890123"
-    },
-    {
-        "code": "00074",
-        "title": "salsa de soya aderezos 1050 gr",
-        "price": "15000.0",
-        "bar_code": "3345678901234"
-    },
-    {
-        "code": "00075",
-        "title": "canela molida frescampo 50 gr",
-        "price": "3990.0",
-        "bar_code": "3456789012345"
-    },
-    {
-        "code": "00076",
-        "title": "pimienta pura el rey 25 gr",
-        "price": "2320.0",
-        "bar_code": "3567890123456"
-    },
-    {
-        "code": "00077",
-        "title": "mayonesa kraft 650 ml",
-        "price": "28000.0",
-        "bar_code": "3678901234567"
-    },
-    {
-        "code": "00078",
-        "title": "salsa showy zafran 200 gr",
-        "price": "6770.0",
-        "bar_code": "3789012345678"
-    },
-    {
-        "code": "00079",
-        "title": "salsa de tomate fruco doypack 190 gr",
-        "price": "6080.0",
-        "bar_code": "3890123456789"
-    },
-    {
-        "code": "00080",
-        "title": "desmen gallina pag 9 llv 12 dona gallina 81 gr",
-        "price": "4790.0",
-        "bar_code": "3901234567890"
-    },
-    {
-        "code": "00081",
-        "title": "salsa de tomate heinz 567 gr",
-        "price": "21000.0",
-        "bar_code": "4012345678901"
-    },
-    {
-        "code": "00082",
-        "title": "caldo de gallina maggi 88 gr",
-        "price": "4260.0",
-        "bar_code": "4123456789012"
-    },
-    {
-        "code": "00083",
-        "title": "vodka wyborowa x 700 ml",
-        "price": "64900.0",
-        "bar_code": "5234567890123"
-    },
-    {
-        "code": "00084",
-        "title": "brandy 5 anos domecq 750 ml",
-        "price": "81500.0",
-        "bar_code": "5345678901234"
-    },
-    {
-        "code": "00085",
-        "title": "brandy en botella grajales 750 ml",
-        "price": "54100.0",
-        "bar_code": "5456789012345"
-    },
-    {
-        "code": "00086",
-        "title": "brandy domecq botella x 750ml",
-        "price": "57700.0",
-        "bar_code": "5567890123456"
-    },
-    {
-        "code": "00087",
-        "title": "brandy domecq media x 375ml",
-        "price": "28750.0",
-        "bar_code": "5678901234567"
-    },
-    {
-        "code": "00088",
-        "title": "brandy 8 anos domecq 750 ml",
-        "price": "83500.0",
-        "bar_code": "5789012345678"
-    },
-    {
-        "code": "00089",
-        "title": "brandy fundador solera 750 ml",
-        "price": "95200.0",
-        "bar_code": "5890123456789"
-    },
-    {
-        "code": "00090",
-        "title": "cognac hennessy frances x 700ml",
-        "price": "288300.0",
-        "bar_code": "5901234567890"
-    },
-    {
-        "code": "00091",
-        "title": "cognac privilege vsop hennessy 700 ml",
-        "price": "483600.0",
-        "bar_code": "6012345678901"
-    },
-    {
-        "code": "00092",
-        "title": "lomo ahumado de cerdo pomona",
-        "price": "57100.0",
-        "bar_code": "6123456789012"
-    },
-    {
-        "code": "00093",
-        "title": "cabano porchi 125 gr",
-        "price": "6400.0",
-        "bar_code": "6234567890123"
-    },
-    {
-        "code": "00094",
-        "title": "pernil de cerdo bouquet pomona 500 gr",
-        "price": "30000.0",
-        "bar_code": "6345678901234"
-    },
-    {
-        "code": "00095",
-        "title": "jamon serrano bodega la abuela 60 gr",
-        "price": "12750.0",
-        "bar_code": "6456789012345"
-    },
-    {
-        "code": "00096",
-        "title": "jamon serrano espanol vilaseca 100 gr",
-        "price": "47100.0",
-        "bar_code": "6567890123456"
-    },
-    {
-        "code": "00097",
-        "title": "mix madurados casa ibanez 180 gr",
-        "price": "41700.0",
-        "bar_code": "6678901234567"
-    },
-    {
-        "code": "00098",
-        "title": "pechuga de pavo taeq 225 gr",
-        "price": "24900.0",
-        "bar_code": "6789012345678"
-    },
-    {
-        "code": "00099",
-        "title": "gallipavo e&m",
-        "price": "76300.0",
-        "bar_code": "6890123456789"
-    },
-    {
-        "code": "00100",
-        "title": "fuet entero vilaseca 140 gr",
-        "price": "27400.0",
-        "bar_code": "6901234567890"
-    },
-    {
-        "code": "00101",
-        "title": "salami milano barra montes",
-        "price": "157500.0",
-        "bar_code": "7012345678901"
-    },
-    {
-        "code": "00102",
-        "title": "chorizo extra vela picante montes",
-        "price": "173500.0",
-        "bar_code": "7123456789012"
-    },
-    {
-        "code": "00103",
-        "title": "salami finas hierbas la factoria gourmet",
-        "price": "136900.0",
-        "bar_code": "7234567890123"
-    }        
-    
+        "price": "16300.0"
+    }
 ]
