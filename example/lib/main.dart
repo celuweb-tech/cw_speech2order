@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
             IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                print('Carrito de compras presionado');
+                debugPrint('[speech2Order] Carrito de compras presionado');
               },
             ),
           ],

@@ -16,27 +16,30 @@ class Speech2OrderPage extends StatefulWidget {
   final Color secondaryColor;
 
   @override
-  _Speech2OrderPageState createState() => _Speech2OrderPageState();
+  Speech2OrderPageState createState() => Speech2OrderPageState();
 }
 
-class _Speech2OrderPageState extends State<Speech2OrderPage> {
+class Speech2OrderPageState extends State<Speech2OrderPage> {
   final SpeechToText _speechToText = SpeechToText();
+
   final List<Map<String, dynamic>> _recognitionResult = [];
   final List<Map<String, dynamic>> _searchResults = [];
+
   bool _speechEnabled = false;
   bool _continuousListening = false;
   bool _isProcessing = false;
+
   String _lastWords = '';
   Timer? _sessionTimer;
   Timer? _restartTimer;
+
   static const int _sessionDurationMinutes = 10;
+  static const int _maxErrorCount = 150;
   static const Duration _restartDelay = Duration(milliseconds: 500);
+  static const Duration _busyRestartDelay = Duration(milliseconds: 300);
+
   DateTime? _sessionStartTime;
   int _errorCount = 0;
-  static const int _maxErrorCount = 150;
-
-  static const Duration _busyRestartDelay =
-      Duration(milliseconds: 300); // New shorter delay for busy state
 
   @override
   void initState() {
@@ -69,7 +72,7 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
       );
       setState(() {});
     } catch (e) {
-      print('Error initializing speech: $e');
+      debugPrint('[speech2Order] Error initializing speech2Order: $e');
       setState(() {
         _speechEnabled = false;
       });
@@ -77,19 +80,17 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
   }
 
   void _onError(SpeechRecognitionError error) {
-    print('Error: ${error.errorMsg}');
+    debugPrint('[speech2Order] Error: ${error.errorMsg}');
 
     switch (error.errorMsg) {
       case 'error_not_match':
       case 'error_no_match':
-        // Ignore these errors completely - they're common with background noise
         break;
 
       case 'error_busy':
         if (_continuousListening) {
           _restartTimer?.cancel();
           _speechToText.stop().then((_) {
-            // Use shorter delay when system is busy
             _restartTimer = Timer(_busyRestartDelay, () {
               if (_continuousListening && !_isProcessing) {
                 _startListening();
@@ -97,7 +98,6 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
             });
           });
         }
-        // Don't increment error count for busy errors
         break;
 
       case 'error_speech_timeout':
@@ -163,7 +163,7 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
   }
 
   void _onSpeechStatus(String status) async {
-    print('Speech status: $status');
+    debugPrint('[speech2Order] Speech status: $status');
 
     if (status == 'done' &&
         _continuousListening &&
@@ -201,14 +201,16 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
     try {
       await _speechToText.listen(
         onResult: _onSpeechResult,
-        listenMode: ListenMode.confirmation,
-        cancelOnError: false, // Changed to false to be more tolerant
-        partialResults: true,
+        listenOptions: SpeechListenOptions(
+          listenMode: ListenMode.confirmation,
+          cancelOnError: false,
+          partialResults: true,
+        ),
         listenFor: const Duration(seconds: 30),
-        pauseFor: const Duration(seconds: 5), // Reduced from 3
+        pauseFor: const Duration(seconds: 5),
       );
     } catch (e) {
-      print('Error starting listening: $e');
+      debugPrint('[speech2Order] Error starting listening: $e');
     } finally {
       setState(() {
         _isProcessing = false;
@@ -223,7 +225,7 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
     try {
       await _speechToText.stop();
     } catch (e) {
-      print('Error stopping listening: $e');
+      debugPrint('[speech2Order] Error stopping listening: $e');
     }
 
     setState(() {
@@ -284,7 +286,7 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
           });
         }
       } catch (e) {
-        print('Error processing speech result: $e');
+        debugPrint('[speech2Order] Error processing speech result: $e');
       } finally {
         if (mounted) {
           setState(() {
@@ -335,7 +337,7 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
 
   void _startSession() {
     _sessionStartTime = DateTime.now();
-    _sessionTimer = Timer(Duration(minutes: _sessionDurationMinutes), () {
+    _sessionTimer = Timer(const Duration(minutes: _sessionDurationMinutes), () {
       _stopListening();
       setState(() {
         _continuousListening = false;
@@ -347,7 +349,8 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
   String get _remainingTime {
     if (_sessionStartTime == null) return '';
     final elapsed = DateTime.now().difference(_sessionStartTime!);
-    final remaining = Duration(minutes: _sessionDurationMinutes) - elapsed;
+    final remaining =
+        const Duration(minutes: _sessionDurationMinutes) - elapsed;
     if (remaining.isNegative) return '0:00';
     return '${remaining.inMinutes}:${(remaining.inSeconds % 60).toString().padLeft(2, '0')}';
   }
@@ -490,7 +493,7 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                       ),
                       if (_searchResults.isNotEmpty &&
                           _speechToText.isListening)
-                        Container(
+                        SizedBox(
                           height: 200,
                           child: ListView.builder(
                             itemCount: _searchResults.length,
