@@ -3,16 +3,13 @@ import 'package:cw_speech2order/constants/numbers.dart';
 import 'package:cw_speech2order/model.dart';
 import 'package:cw_speech2order/search.dart';
 
-/// Processes the results of speech recognition and prepares data for display.
+/// Processes speech text into product orders.
 ///
-/// This function takes the recognized speech text and a list of products as input.
-/// It then performs the following steps:
-///   1. Processes the speech text using the `processWords` function .
-///   2. Extracts the product quantity from the processed words using `processProductQuantity`.
-///   3. Removes the quantity information from the processed words using `removeProductQuantity`.
-///   4. Searches for products based on the processed words using the `searchProducts`.
-///   5. Returns the response list.
+/// [speechText] The text from speech recognition.
+/// [products] List of available products to search from.
 ///
+/// Returns list of maps containing matched products with quantities.
+/// Returns empty list if no valid orders found or text doesn't start with number.
 Future<List<Map<String, dynamic>>> proccesSpeechResult({
   required String speechText,
   required List<Speech2OrderProduct> products,
@@ -23,26 +20,21 @@ Future<List<Map<String, dynamic>>> proccesSpeechResult({
   }
 
   List<Map<String, dynamic>> response = [];
-
-  products = normalizeProducts(products);
-
-  // Process speech text
   List<String> processedText = normalizeWords(words);
 
+  products = normalizeProducts(products);
   processedText = processNumbers(speechText);
-  // Extract and remove product quantity (implementations assumed elsewhere)
   int productQuantity = processProductQuantity(processedText);
+
   if (productQuantity > 0) {
     processedText = removeProductQuantity(processedText);
   }
 
   processedText = processDictionaryWords(processedText.join(' '));
 
-  // Search for products based on processed words
   List<Speech2OrderProduct> productsBySearch =
       searchProducts(products, processedText);
 
-  // Build response with product information if found
   if (productsBySearch.isNotEmpty) {
     for (var product in productsBySearch) {
       Map<String, dynamic> item = {
@@ -60,8 +52,12 @@ Future<List<Map<String, dynamic>>> proccesSpeechResult({
   }
 }
 
+/// Normalizes text by removing accents and special characters.
+///
+/// [words] List of words to normalize.
+///
+/// Returns list of normalized words in lowercase without special characters.
 List<String> normalizeWords(List<String> words) {
-  // Normalize keywords
   return words = words
       .map((word) => word
           .trim()
@@ -76,6 +72,11 @@ List<String> normalizeWords(List<String> words) {
       .toList();
 }
 
+/// Normalizes product titles for consistent search matching.
+///
+/// [products] List of products to normalize.
+///
+/// Returns new list with normalized product titles.
 List<Speech2OrderProduct> normalizeProducts(
     List<Speech2OrderProduct> products) {
   // Normalize product titles
@@ -93,7 +94,11 @@ List<Speech2OrderProduct> normalizeProducts(
       .toList();
 }
 
-/// Procesa las palabras del texto reemplazándolas por sus abreviaturas si existen en el diccionario.
+// Replaces words with their dictionary abbreviations.
+///
+/// [text] Text to process with dictionary.
+///
+/// Returns list containing original words and their abbreviations.
 List<String> processDictionaryWords(String text) {
   final words = text.split(' ');
 
@@ -114,9 +119,11 @@ List<String> processDictionaryWords(String text) {
   return words;
 }
 
-///   * `processNumbers`: Splits text into words, replaces written-out numbers
-///     with numeric equivalents, groups sequences of digits, and identifies
-///     quantities with "x" followed by a number.
+/// Converts text numbers to digits and formats quantities.
+///
+/// [text] Text containing numbers to process.
+///
+/// Returns list with numbers converted to standard formats.
 List<String> processNumbers(String text) {
   final words = text.split(' ');
 
@@ -144,13 +151,14 @@ List<String> processNumbers(String text) {
   return result;
 }
 
-///   * `processProductQuantity`: Extracts the quantity information from the
-///     processed words. It checks for formats like "x25" or direct numbers
-///     and returns the quantity as an integer.
+/// Extracts product quantity from formatted text.
+///
+/// [words] List of processed words to check for quantity.
+///
+/// Returns quantity as integer, defaults to 1 if not found.
+/// RegExp(r'^x\d+$') check format (x25)
 int processProductQuantity(List<String> words) {
-  // Verificar si alguna palabra contiene una cantidad directa o un formato 'x25'
   if (words.any((word) => RegExp(r'^x\d+$').hasMatch(word))) {
-    // Buscar el formato 'x25' y devolver la cantidad
     final xFormat = words.firstWhere((word) => RegExp(r'^x\d+$').hasMatch(word),
         orElse: () => '');
     if (xFormat.isNotEmpty) {
@@ -161,8 +169,11 @@ int processProductQuantity(List<String> words) {
   return 1;
 }
 
-///   * `removeProductQuantity`: Removes any quantity information (words
-///     starting with "x" followed by digits) from the processed words list.
+/// Removes quantity indicators from word list.
+///
+/// [words] List to remove quantity formats from.
+///
+/// Returns filtered list without quantity indicators.
 List<String> removeProductQuantity(List<String> words) {
   final regex = RegExp(r'^x\d+$');
   return words
@@ -171,21 +182,24 @@ List<String> removeProductQuantity(List<String> words) {
       .toList();
 }
 
-///   * `groupNumbers`: Groups sequences of digits together into single words
-///     in the processed text.
-List<String> groupNumbers(List<String> palabras) {
+/// Removes quantity indicators from word list.
+///
+/// [words] List to remove quantity formats from.
+///
+/// Returns filtered list without quantity indicators.
+List<String> groupNumbers(List<String> words) {
   List<String> result = [];
   String currentNumber = '';
 
-  for (String palabra in palabras) {
-    if (RegExp(r'^\d+$').hasMatch(palabra)) {
-      currentNumber += palabra;
+  for (String word in words) {
+    if (RegExp(r'^\d+$').hasMatch(word)) {
+      currentNumber += word;
     } else {
       if (currentNumber.isNotEmpty) {
         result.add(currentNumber);
         currentNumber = '';
       }
-      result.add(palabra);
+      result.add(word);
     }
   }
 

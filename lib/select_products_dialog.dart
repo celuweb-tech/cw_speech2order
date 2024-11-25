@@ -78,8 +78,8 @@ class Speech2OrderSelectionDialogState
       actions: [
         ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(
-                widget.primaryColor), // Here Im having the error
+            backgroundColor:
+                WidgetStateProperty.all<Color>(widget.primaryColor),
           ),
           onPressed: () {
             List<Map<String, dynamic>> selectedItems = [];
