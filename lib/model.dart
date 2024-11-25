@@ -1,7 +1,7 @@
 class Speech2OrderProduct {
   final String title;
   final String code;
-  final String? quantity;
+  String? quantity;
 
   Speech2OrderProduct({
     required this.title,

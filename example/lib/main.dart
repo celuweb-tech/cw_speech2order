@@ -43,7 +43,11 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 10.0,
-          title: const Text('speech2Order'),
+          backgroundColor: Colors.blueGrey,
+          title: const Text(
+            'speech2Order',
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.shopping_cart),
@@ -78,16 +82,38 @@ class _MainScreenState extends State<MainScreen> {
                             child: Card(
                                 child: Padding(
                               padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                              child: Row(
                                 children: [
-                                  Text(
-                                    product.title,
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        product.title,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(product.code),
+                                    ],
                                   ),
-                                  Text(product.code),
+                                  const Spacer(),
+                                  Visibility(
+                                    visible: product.quantity != null &&
+                                        product.quantity != '',
+                                    child: Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.red),
+                                      child: Text(
+                                        product.quantity!,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             )),
@@ -108,19 +134,21 @@ class _MainScreenState extends State<MainScreen> {
               context,
               MaterialPageRoute(
                 builder: (context) => Speech2OrderPage(
-                  primaryColor: Colors.green,
+                  primaryColor: Colors.blueGrey,
                   products: speech2OrderProducts,
                 ),
               ),
             );
 
             if (selectedItems.isNotEmpty) {
-              for (var element in selectedItems) {
-                var product = speech2OrderProducts.firstWhere(
-                  (e) => e.code == element.values.elementAt(1),
-                );
-                //product.quantity = element.values.elementAt(2);
-              }
+              setState(() {
+                for (var element in selectedItems) {
+                  var product = speech2OrderProducts.firstWhere(
+                    (e) => e.code == element['code'],
+                  );
+                  product.quantity = element['quantity'].toString();
+                }
+              });
             }
           },
           label: const Row(
