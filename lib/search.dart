@@ -21,7 +21,7 @@ List<Speech2OrderProduct> searchProducts(
     //if (palabrasClave.every((palabra) => RegExp(r'^\d+$').hasMatch(palabra))) {
     return productos
         .where((producto) =>
-            producto.code.toLowerCase().contains(palabrasClave.first))
+            producto.code.toLowerCase().endsWith(palabrasClave.first))
         .take(productsToTake)
         .toList();
   } else {

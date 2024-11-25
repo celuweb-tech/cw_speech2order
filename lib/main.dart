@@ -420,8 +420,6 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reconocimiento de Voz'),
-        backgroundColor: widget.primaryColor,
         actions: [
           if (_sessionStartTime != null)
             Center(
