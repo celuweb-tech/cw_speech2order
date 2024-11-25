@@ -46,7 +46,7 @@ Future<List<Map<String, dynamic>>> proccesSpeechResult({
     for (var product in productsBySearch) {
       Map<String, dynamic> item = {
         'title': product.title,
-        'code': product.barCode,
+        'code': product.code,
         'quantity': productQuantity,
       };
       response.add(item);
@@ -87,7 +87,7 @@ List<Speech2OrderProduct> normalizeProducts(
               .replaceAll(RegExp(r'[óòôõöø]'), 'o')
               .replaceAll(RegExp(r'[úùûü]'), 'u')
               .replaceAll(RegExp(r'[.?!-]'), ''),
-          barCode: producto.barCode))
+          code: producto.code))
       .toList();
 }
 

@@ -22,7 +22,7 @@ List<Speech2OrderProduct> searchProducts(
     if (palabrasClave.every((palabra) => RegExp(r'^\d+$').hasMatch(palabra))) {
       return productos
           .where((producto) => palabrasClave.any((ultimos4Digitos) =>
-              producto.barCode.toLowerCase().endsWith(ultimos4Digitos)))
+              producto.code.toLowerCase().endsWith(ultimos4Digitos)))
           .take(productsToTake)
           .toList();
     } else {
