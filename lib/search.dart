@@ -18,17 +18,17 @@ List<Speech2OrderProduct> searchProducts(
   const productsToTake = 20;
 
   if (searchByCode) {
-    if (palabrasClave.every((palabra) => RegExp(r'^\d+$').hasMatch(palabra))) {
-      return productos
-          .where((producto) => palabrasClave.any((ultimos4Digitos) =>
-              producto.code.toLowerCase().contains(ultimos4Digitos)))
-          .take(productsToTake)
-          .toList();
-    } else {
-      return [];
-    }
+    //if (palabrasClave.every((palabra) => RegExp(r'^\d+$').hasMatch(palabra))) {
+    return productos
+        .where((producto) =>
+            producto.code.toLowerCase().contains(palabrasClave.first))
+        .take(productsToTake)
+        .toList();
+  } else {
+    return [];
   }
-  return [];
+  //}
+  // return [];
 }
 
 /// Extensión para la clase [List] que agrega un método [firstWhereOrNull].

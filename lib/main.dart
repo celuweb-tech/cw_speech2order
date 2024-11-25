@@ -30,10 +30,13 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
   Timer? _sessionTimer;
   Timer? _restartTimer;
   static const int _sessionDurationMinutes = 10;
-  static const Duration _restartDelay = Duration(milliseconds: 1000);
+  static const Duration _restartDelay = Duration(milliseconds: 500);
   DateTime? _sessionStartTime;
   int _errorCount = 0;
-  static const int _maxErrorCount = 5;
+  static const int _maxErrorCount = 150;
+
+  static const Duration _busyRestartDelay =
+      Duration(milliseconds: 300); // New shorter delay for busy state
 
   @override
   void initState() {
@@ -68,13 +71,27 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
   void _onError(SpeechRecognitionError error) {
     print('Error: ${error.errorMsg}');
 
-    // Solo incrementar el contador para errores críticos
-    // excluyendo específicamente error_not_match
     switch (error.errorMsg) {
       case 'error_not_match':
-        // Ignora este error y continúa escuchando
+      case 'error_no_match':
+        // Ignore these errors completely - they're common with background noise
         break;
+
       case 'error_busy':
+        if (_continuousListening) {
+          _restartTimer?.cancel();
+          _speechToText.stop().then((_) {
+            // Use shorter delay when system is busy
+            _restartTimer = Timer(_busyRestartDelay, () {
+              if (_continuousListening && !_isProcessing) {
+                _startListening();
+              }
+            });
+          });
+        }
+        // Don't increment error count for busy errors
+        break;
+
       case 'error_speech_timeout':
         if (_continuousListening) {
           _restartTimer?.cancel();
@@ -84,17 +101,18 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
             }
           });
         }
-        if (error.permanent) {
-          _errorCount++;
-        }
+        // Only increment for permanent timeouts
+        if (error.permanent) _errorCount++;
         break;
+
       default:
+        // For other errors, only increment if permanent
         if (error.permanent) {
           _errorCount++;
         }
     }
 
-    // Verificar el contador de errores críticos
+    // Show error dialog only after exceeding threshold
     if (_errorCount >= _maxErrorCount) {
       _stopListening();
       _showErrorDialog(
@@ -103,11 +121,14 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
       return;
     }
 
-    // Detener solo para errores permanentes críticos
+    // Stop only for critical permanent errors
     if (error.permanent &&
-        error.errorMsg != 'error_not_match' &&
-        error.errorMsg != 'error_speech_timeout' &&
-        error.errorMsg != 'error_busy') {
+        ![
+          'error_not_match',
+          'error_no_match',
+          'error_speech_timeout',
+          'error_busy'
+        ].contains(error.errorMsg)) {
       _stopListening();
       _showErrorDialog('Error en el reconocimiento de voz: ${error.errorMsg}');
     }
@@ -173,10 +194,10 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
       await _speechToText.listen(
         onResult: _onSpeechResult,
         listenMode: ListenMode.confirmation,
-        cancelOnError: true,
+        cancelOnError: false, // Changed to false to be more tolerant
         partialResults: true,
         listenFor: const Duration(seconds: 30),
-        pauseFor: const Duration(seconds: 3),
+        pauseFor: const Duration(seconds: 5), // Reduced from 3
       );
     } catch (e) {
       print('Error starting listening: $e');
@@ -428,32 +449,36 @@ class _Speech2OrderPageState extends State<Speech2OrderPage> {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      Card(
-                        elevation: 4,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            children: [
-                              Icon(
-                                _speechToText.isListening
-                                    ? Icons.mic
-                                    : Icons.mic_off,
-                                size: 48,
-                                color: _continuousListening
-                                    ? Colors.red
-                                    : widget.primaryColor,
-                              ),
-                              const SizedBox(height: 16),
-                              Text(
-                                _speechToText.isListening
-                                    ? 'Escuchando: $_lastWords'
-                                    : _speechEnabled
-                                        ? 'Toca el micrófono para iniciar el reconocimiento continuo'
-                                        : 'El reconocimiento de voz no está disponible',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
+                      SizedBox(
+                        height: 150,
+                        child: Card(
+                          elevation: 4,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Icon(
+                                  _speechToText.isListening
+                                      ? Icons.mic
+                                      : Icons.mic_off,
+                                  size: 48,
+                                  color: _continuousListening
+                                      ? Colors.red
+                                      : widget.primaryColor,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  _speechToText.isListening
+                                      ? 'Escuchando: $_lastWords'
+                                      : _speechEnabled
+                                          ? 'Toca el micrófono para iniciar el reconocimiento continuo'
+                                          : 'El reconocimiento de voz no está disponible',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
