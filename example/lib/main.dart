@@ -36,6 +36,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Speech2OrderProduct> speech2OrderProducts = [];
+  bool _needsRefresh = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +44,12 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 10.0,
-          backgroundColor: Colors.blueGrey,
-          title: const Text(
-            'speech2Order',
-            style: TextStyle(color: Colors.white),
-          ),
+          title: const Text('speech2Order'),
           actions: [
             IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                debugPrint('[speech2Order] Carrito de compras presionado');
+                print('Carrito de compras presionado');
               },
             ),
           ],
@@ -60,6 +57,8 @@ class _MainScreenState extends State<MainScreen> {
         body: SingleChildScrollView(
           child: Center(
             child: FutureBuilder<List<Speech2OrderProduct>>(
+              key: ValueKey(
+                  _needsRefresh), // Forzar reconstrucción cuando sea necesario
               future: widget.fetchProducts(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -67,56 +66,53 @@ class _MainScreenState extends State<MainScreen> {
                 } else if (snapshot.hasError) {
                   return const Text('Error loading products');
                 } else if (snapshot.hasData) {
-                  final products = snapshot.data!;
-                  speech2OrderProducts = products;
+                  if (!_needsRefresh) {
+                    speech2OrderProducts = snapshot.data!;
+                  }
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      for (var product in products)
+                      for (var product in speech2OrderProducts)
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 5),
                             child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        product.title,
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(product.code),
-                                    ],
+                              elevation: 4,
+                              child: ListTile(
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                                title: Text(
+                                  product.title,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  const Spacer(),
-                                  Visibility(
-                                    visible: product.quantity != null &&
-                                        product.quantity != '',
-                                    child: Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          color: Colors.red),
-                                      child: Text(
-                                        product.quantity!,
-                                        style: const TextStyle(
-                                            color: Colors.white),
+                                ),
+                                subtitle: Text(product.code),
+                                trailing: Visibility(
+                                  visible: product.quantity != '0',
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Text(
+                                      'x${product.quantity}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
-                            )),
+                            ),
                           ),
                         ),
                     ],
@@ -130,33 +126,41 @@ class _MainScreenState extends State<MainScreen> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            List<Map<String, dynamic>> selectedItems = await Navigator.push(
+            final result = await Navigator.push<List<Map<String, dynamic>>>(
               context,
               MaterialPageRoute(
                 builder: (context) => Speech2OrderPage(
-                  primaryColor: Colors.blueGrey,
+                  primaryColor: Colors.green,
                   products: speech2OrderProducts,
                 ),
               ),
             );
 
-            if (selectedItems.isNotEmpty) {
-              setState(() {
-                for (var element in selectedItems) {
-                  var product = speech2OrderProducts.firstWhere(
-                    (e) => e.code == element['code'],
-                  );
-                  product.quantity = element['quantity'].toString();
+            if (result != null && result.isNotEmpty) {
+              // Resetear todas las cantidades primero
+              for (var product in speech2OrderProducts) {
+                product.quantity = "0";
+              }
+
+              // Actualizar las cantidades de los productos seleccionados
+              for (var element in result) {
+                int index = speech2OrderProducts
+                    .indexWhere((p) => p.code == element['code']);
+                if (index != -1) {
+                  speech2OrderProducts[index].quantity =
+                      element['quantity'].toString();
                 }
+              }
+
+              setState(() {
+                _needsRefresh = !_needsRefresh; // Forzar reconstrucción
               });
             }
           },
           label: const Row(
             children: [
               Text('speech '),
-              SizedBox(
-                width: 10,
-              ),
+              SizedBox(width: 10),
               Icon(Icons.mic_outlined)
             ],
           ),
