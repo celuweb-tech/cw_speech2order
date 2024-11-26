@@ -43,16 +43,12 @@ class _MainScreenState extends State<MainScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
           elevation: 10.0,
-          title: const Text('speech2Order'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              onPressed: () {
-                print('Carrito de compras presionado');
-              },
-            ),
-          ],
+          title: const Text(
+            'speech2Order',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -125,12 +121,13 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Colors.blueGrey,
           onPressed: () async {
             final result = await Navigator.push<List<Map<String, dynamic>>>(
               context,
               MaterialPageRoute(
                 builder: (context) => Speech2OrderPage(
-                  primaryColor: Colors.green,
+                  primaryColor: Colors.blueGrey,
                   products: speech2OrderProducts,
                 ),
               ),
@@ -159,9 +156,15 @@ class _MainScreenState extends State<MainScreen> {
           },
           label: const Row(
             children: [
-              Text('speech '),
+              Text(
+                'speech',
+                style: TextStyle(color: Colors.white),
+              ),
               SizedBox(width: 10),
-              Icon(Icons.mic_outlined)
+              Icon(
+                Icons.mic_outlined,
+                color: Colors.white,
+              )
             ],
           ),
         ),
